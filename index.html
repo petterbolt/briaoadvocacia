@@ -443,7 +443,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // original <html>, so metadata from the delivery shell must be restored.
     doc.documentElement.lang = 'pt-BR';
     doc.title = 'Brião Advocacia | Especialista em Porte de Arma de Fogo';
-    doc.head.querySelectorAll('script[type="application/ld+json"]').forEach((node) => node.remove());
+    doc.querySelectorAll('script[type="application/ld+json"]').forEach((node) => node.remove());
     const seoHead = document.head.querySelectorAll(
       'meta[name="description"],meta[name="robots"],meta[name="googlebot"],meta[name="author"],meta[name="theme-color"],meta[name="format-detection"],meta[property^="og:"],meta[name^="twitter:"],link[rel="canonical"],link[rel="alternate"],link[rel="manifest"],script[type="application/ld+json"]'
     );
