@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://briaoadvocacia.com.br/sitemap.xml
