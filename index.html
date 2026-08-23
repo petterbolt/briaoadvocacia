@@ -136,10 +136,9 @@
   </script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #faf9f5; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
-    #__bundler_loading { position: fixed; bottom: 20px; right: 20px; font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; color: #666; background: #fff; padding: 8px 14px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); z-index: 10000; }
-    #__bundler_thumbnail { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #faf9f5; z-index: 9999; }
-    #__bundler_thumbnail svg { width: 100%; height: 100%; object-fit: contain; }
+    html, body { background: #0b0b0d; min-height: 100%; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+    #__bundler_loading, #__bundler_thumbnail { display: none !important; }
     #__bundler_placeholder { color: #999; font-size: 14px; }
   </style>
   <noscript>
@@ -154,11 +153,6 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NS5D4RD"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <div id="__bundler_thumbnail">
-  <svg xmlns="http://www.w3.org/2000/svg" sc-camel-view-box="0 0 100 100"><rect width="100" height="100" fill="#0b0b0d"></rect><text x="50" y="58" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#c9a24b" text-anchor="middle" letter-spacing="-2">BA</text><text x="50" y="76" font-family="Georgia,serif" font-size="8" fill="#f2efe8" text-anchor="middle" letter-spacing="3">BRIAO</text></svg>
-</div>
-  <div id="__bundler_loading">Unpacking...</div>
-
   <script>
     
 document.addEventListener('DOMContentLoaded', async function() {
