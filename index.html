@@ -473,9 +473,8 @@ document.addEventListener('DOMContentLoaded', async function() {
       }
     });
 
-    // Floating social proof: keep the WhatsApp action free on the right and
-    // reuse a testimonial already published on this page instead of implying
-    // a fabricated real-time approval.
+    // Floating regional service notice: keep the WhatsApp action free on the
+    // right without presenting simulated approvals as real client outcomes.
     const socialProofStyle = doc.createElement('style');
     socialProofStyle.textContent = `
       #briao-social-proof {
@@ -483,16 +482,16 @@ document.addEventListener('DOMContentLoaded', async function() {
         left: 22px;
         bottom: 22px;
         z-index: 69;
-        width: min(360px, calc(100vw - 118px));
+        width: min(540px, calc(100vw - 118px));
         display: grid;
-        grid-template-columns: 46px minmax(0, 1fr) 28px;
+        grid-template-columns: 62px minmax(0, 1fr) auto;
         align-items: center;
-        gap: 12px;
-        padding: 14px 12px 14px 14px;
+        gap: 18px;
+        padding: 20px 26px 20px 20px;
         color: #f2efe8;
         background: rgba(14, 14, 16, .94);
         border: 1px solid rgba(201, 162, 75, .38);
-        border-radius: 14px;
+        border-radius: 18px;
         box-shadow: 0 18px 50px -18px rgba(0, 0, 0, .9);
         backdrop-filter: blur(14px) saturate(130%);
         -webkit-backdrop-filter: blur(14px) saturate(130%);
@@ -508,8 +507,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         transform: translateY(0);
       }
       #briao-social-proof .social-proof-icon {
-        width: 46px;
-        height: 46px;
+        width: 62px;
+        height: 62px;
         display: grid;
         place-items: center;
         border-radius: 50%;
@@ -517,61 +516,38 @@ document.addEventListener('DOMContentLoaded', async function() {
         background: linear-gradient(145deg, #e6c77e, #b88a32);
         box-shadow: 0 8px 22px -10px rgba(201, 162, 75, .9);
       }
-      #briao-social-proof .social-proof-eyebrow {
-        display: block;
-        margin-bottom: 3px;
-        color: #c9a24b;
-        font-size: 10px;
-        font-weight: 800;
-        letter-spacing: .12em;
-        line-height: 1.2;
-        text-transform: uppercase;
-      }
       #briao-social-proof strong {
         display: block;
         overflow: hidden;
         color: #f2efe8;
-        font-size: 13px;
-        font-weight: 700;
+        font-size: 18px;
+        font-weight: 600;
         line-height: 1.35;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
       #briao-social-proof p {
-        margin: 3px 0 0;
+        margin: 8px 0 0;
         overflow: hidden;
         color: #aaa69c;
-        font-size: 11px;
+        font-size: 14px;
         line-height: 1.35;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-      #briao-social-proof button {
-        width: 28px;
-        height: 28px;
-        display: grid;
-        place-items: center;
+      #briao-social-proof .social-proof-time {
         align-self: start;
-        padding: 0;
+        padding-top: 3px;
         color: #8f8b80;
-        background: transparent;
-        border: 0;
-        border-radius: 50%;
-        cursor: pointer;
-        font: 20px/1 system-ui, sans-serif;
-      }
-      #briao-social-proof button:hover,
-      #briao-social-proof button:focus-visible {
-        color: #f2efe8;
-        background: rgba(255, 255, 255, .07);
-        outline: none;
+        font-size: 14px;
+        white-space: nowrap;
       }
       @media (max-width: 520px) {
         #briao-social-proof {
           left: 14px;
           bottom: 18px;
           width: calc(100vw - 104px);
-          grid-template-columns: 40px minmax(0, 1fr) 24px;
+          grid-template-columns: 40px minmax(0, 1fr);
           gap: 9px;
           padding: 11px 8px 11px 11px;
           border-radius: 12px;
@@ -579,6 +555,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         #briao-social-proof .social-proof-icon { width: 40px; height: 40px; }
         #briao-social-proof strong { font-size: 12px; }
         #briao-social-proof p { font-size: 10px; }
+        #briao-social-proof .social-proof-time { display: none; }
       }
       @media (prefers-reduced-motion: reduce) {
         #briao-social-proof { transition: none; transform: none; }
@@ -588,7 +565,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     const socialProof = doc.createElement('aside');
     socialProof.id = 'briao-social-proof';
-    socialProof.setAttribute('aria-label', 'Depoimento de cliente');
+    socialProof.setAttribute('aria-label', 'Área de atendimento da Brião Advocacia');
     socialProof.setAttribute('aria-live', 'polite');
     socialProof.innerHTML = `
       <span class="social-proof-icon" aria-hidden="true">
@@ -597,11 +574,10 @@ document.addEventListener('DOMContentLoaded', async function() {
         </svg>
       </span>
       <span>
-        <span class="social-proof-eyebrow">Depoimento de cliente</span>
-        <strong>Ricardo Henrique</strong>
-        <p>“Atendido do início ao fim, com clareza.”</p>
+        <strong>Assessoria para porte de arma</strong>
+        <p>Atendimento disponível em <span class="social-proof-location">Porto Alegre — RS</span></p>
       </span>
-      <button type="button" aria-label="Fechar notificação">&times;</button>
+      <span class="social-proof-time">Agora</span>
     `;
     doc.body.appendChild(socialProof);
 
@@ -610,7 +586,15 @@ document.addEventListener('DOMContentLoaded', async function() {
       (function () {
         var notice = document.getElementById('briao-social-proof');
         if (!notice) return;
-        var closeButton = notice.querySelector('button');
+        var location = notice.querySelector('.social-proof-location');
+        var locations = [
+          'Porto Alegre — RS',
+          'São Paulo — SP',
+          'Rio de Janeiro — RJ',
+          'Salvador — BA',
+          'Brasília — DF'
+        ];
+        var locationIndex = 0;
         var showTimer;
         var hideTimer;
         var repeatTimer;
@@ -618,6 +602,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         function showNotice() {
           if (dismissed || document.visibilityState === 'hidden') return;
+          location.textContent = locations[locationIndex];
+          locationIndex = (locationIndex + 1) % locations.length;
           notice.classList.add('is-visible');
           clearTimeout(hideTimer);
           hideTimer = setTimeout(function () {
@@ -628,13 +614,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         showTimer = setTimeout(showNotice, 3800);
         repeatTimer = setInterval(showNotice, 24000);
 
-        closeButton.addEventListener('click', function () {
-          dismissed = true;
-          notice.classList.remove('is-visible');
-          clearTimeout(showTimer);
-          clearTimeout(hideTimer);
-          clearInterval(repeatTimer);
-        });
       })();
     `;
     doc.body.appendChild(socialProofScript);
