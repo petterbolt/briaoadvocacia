@@ -472,6 +472,172 @@ document.addEventListener('DOMContentLoaded', async function() {
         node.remove();
       }
     });
+
+    // Floating social proof: keep the WhatsApp action free on the right and
+    // reuse a testimonial already published on this page instead of implying
+    // a fabricated real-time approval.
+    const socialProofStyle = doc.createElement('style');
+    socialProofStyle.textContent = `
+      #briao-social-proof {
+        position: fixed;
+        left: 22px;
+        bottom: 22px;
+        z-index: 69;
+        width: min(360px, calc(100vw - 118px));
+        display: grid;
+        grid-template-columns: 46px minmax(0, 1fr) 28px;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 12px 14px 14px;
+        color: #f2efe8;
+        background: rgba(14, 14, 16, .94);
+        border: 1px solid rgba(201, 162, 75, .38);
+        border-radius: 14px;
+        box-shadow: 0 18px 50px -18px rgba(0, 0, 0, .9);
+        backdrop-filter: blur(14px) saturate(130%);
+        -webkit-backdrop-filter: blur(14px) saturate(130%);
+        font-family: 'Manrope', system-ui, sans-serif;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(24px);
+        transition: opacity .45s ease, transform .45s ease, visibility .45s;
+      }
+      #briao-social-proof.is-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      #briao-social-proof .social-proof-icon {
+        width: 46px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        color: #0b0b0d;
+        background: linear-gradient(145deg, #e6c77e, #b88a32);
+        box-shadow: 0 8px 22px -10px rgba(201, 162, 75, .9);
+      }
+      #briao-social-proof .social-proof-eyebrow {
+        display: block;
+        margin-bottom: 3px;
+        color: #c9a24b;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: .12em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+      #briao-social-proof strong {
+        display: block;
+        overflow: hidden;
+        color: #f2efe8;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.35;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      #briao-social-proof p {
+        margin: 3px 0 0;
+        overflow: hidden;
+        color: #aaa69c;
+        font-size: 11px;
+        line-height: 1.35;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      #briao-social-proof button {
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        align-self: start;
+        padding: 0;
+        color: #8f8b80;
+        background: transparent;
+        border: 0;
+        border-radius: 50%;
+        cursor: pointer;
+        font: 20px/1 system-ui, sans-serif;
+      }
+      #briao-social-proof button:hover,
+      #briao-social-proof button:focus-visible {
+        color: #f2efe8;
+        background: rgba(255, 255, 255, .07);
+        outline: none;
+      }
+      @media (max-width: 520px) {
+        #briao-social-proof {
+          left: 14px;
+          bottom: 18px;
+          width: calc(100vw - 104px);
+          grid-template-columns: 40px minmax(0, 1fr) 24px;
+          gap: 9px;
+          padding: 11px 8px 11px 11px;
+          border-radius: 12px;
+        }
+        #briao-social-proof .social-proof-icon { width: 40px; height: 40px; }
+        #briao-social-proof strong { font-size: 12px; }
+        #briao-social-proof p { font-size: 10px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #briao-social-proof { transition: none; transform: none; }
+      }
+    `;
+    doc.head.appendChild(socialProofStyle);
+
+    const socialProof = doc.createElement('aside');
+    socialProof.id = 'briao-social-proof';
+    socialProof.setAttribute('aria-label', 'Depoimento de cliente');
+    socialProof.setAttribute('aria-live', 'polite');
+    socialProof.innerHTML = `
+      <span class="social-proof-icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6 9 17l-5-5"></path>
+        </svg>
+      </span>
+      <span>
+        <span class="social-proof-eyebrow">Depoimento de cliente</span>
+        <strong>Ricardo Henrique</strong>
+        <p>“Atendido do início ao fim, com clareza.”</p>
+      </span>
+      <button type="button" aria-label="Fechar notificação">&times;</button>
+    `;
+    doc.body.appendChild(socialProof);
+
+    const socialProofScript = doc.createElement('script');
+    socialProofScript.textContent = `
+      (function () {
+        var notice = document.getElementById('briao-social-proof');
+        if (!notice) return;
+        var closeButton = notice.querySelector('button');
+        var showTimer;
+        var hideTimer;
+        var repeatTimer;
+        var dismissed = false;
+
+        function showNotice() {
+          if (dismissed || document.visibilityState === 'hidden') return;
+          notice.classList.add('is-visible');
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(function () {
+            notice.classList.remove('is-visible');
+          }, 7000);
+        }
+
+        showTimer = setTimeout(showNotice, 3800);
+        repeatTimer = setInterval(showNotice, 24000);
+
+        closeButton.addEventListener('click', function () {
+          dismissed = true;
+          notice.classList.remove('is-visible');
+          clearTimeout(showTimer);
+          clearTimeout(hideTimer);
+          clearInterval(repeatTimer);
+        });
+      })();
+    `;
+    doc.body.appendChild(socialProofScript);
     document.documentElement.replaceWith(doc.documentElement);
 
     // Resolve page-frame markers: mint this document's own blob for each
