@@ -454,6 +454,23 @@ document.addEventListener('DOMContentLoaded', async function() {
     );
     seoHead.forEach((node) => doc.head.appendChild(node.cloneNode(true)));
 
+    // Desktop-only hero background. Tablet and mobile keep the original
+    // artwork and responsive rules unchanged.
+    const desktopHeroStyle = doc.createElement('style');
+    desktopHeroStyle.textContent = `
+      @media (min-width: 1025px) {
+        #heroSec {
+          background-image:
+            linear-gradient(90deg, rgba(7,7,9,.98) 0%, rgba(7,7,9,.90) 27%, rgba(7,7,9,.48) 50%, rgba(7,7,9,.10) 72%, rgba(7,7,9,.12) 100%),
+            url("uploads/dra-michelle-hero.webp") !important;
+          background-size: cover !important;
+          background-position: center center !important;
+          background-repeat: no-repeat !important;
+        }
+      }
+    `;
+    doc.head.appendChild(desktopHeroStyle);
+
     const textWalker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
     let textNode;
     while ((textNode = textWalker.nextNode())) {
