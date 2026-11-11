@@ -858,7 +858,896 @@ document.addEventListener('DOMContentLoaded', async function() {
           </div>
         `;
         serviceSection.parentElement.insertAdjacentElement('afterend', profileSection);
+
+        if (!doc.getElementById('como-funciona-assessoria')) {
+          const timelineStyle = doc.createElement('style');
+          timelineStyle.textContent = `
+            #como-funciona-assessoria {
+              color: #1a1814;
+              background:
+                radial-gradient(circle at 50% 0%, rgba(201, 162, 75, .10), transparent 34%),
+                #f5f3ee;
+            }
+            #como-funciona-assessoria .briao-timeline-inner {
+              max-width: 1240px;
+              margin: 0 auto;
+              padding: clamp(76px, 9vw, 118px) clamp(18px, 4vw, 40px);
+              text-align: center;
+            }
+            #como-funciona-assessoria .briao-timeline-heading {
+              max-width: 900px;
+              margin: 0 auto;
+            }
+            #como-funciona-assessoria .briao-timeline-heading h2 {
+              margin: 0;
+              color: #17150f;
+              font-size: clamp(30px, 3.5vw, 46px);
+              font-weight: 800;
+              letter-spacing: -.025em;
+              line-height: 1.14;
+            }
+            #como-funciona-assessoria .briao-timeline-heading h2 span { color: #b88a32; }
+            #como-funciona-assessoria .briao-timeline-heading p {
+              max-width: 720px;
+              margin: 18px auto 0;
+              color: #5c584e;
+              font-size: clamp(15px, 1.35vw, 18px);
+              line-height: 1.7;
+            }
+            #como-funciona-assessoria .briao-timeline-rule {
+              display: block;
+              width: 70px;
+              height: 3px;
+              margin: 28px auto 58px;
+              border-radius: 3px;
+              background: linear-gradient(90deg, #e6c77e, #b88a32);
+            }
+            #como-funciona-assessoria .briao-timeline {
+              position: relative;
+              display: grid;
+              grid-template-columns: repeat(4, minmax(0, 1fr));
+              gap: 28px;
+              text-align: center;
+            }
+            #como-funciona-assessoria .briao-timeline::before {
+              content: '';
+              position: absolute;
+              z-index: 0;
+              top: 39px;
+              left: 12.5%;
+              right: 12.5%;
+              height: 1px;
+              background: linear-gradient(90deg, rgba(184, 138, 50, .22), #c9a24b 18%, #c9a24b 82%, rgba(184, 138, 50, .22));
+            }
+            #como-funciona-assessoria .briao-timeline-step {
+              position: relative;
+              z-index: 1;
+              min-width: 0;
+            }
+            #como-funciona-assessoria .briao-timeline-marker {
+              position: relative;
+              width: 78px;
+              height: 78px;
+              display: grid;
+              place-items: center;
+              margin: 0 auto 24px;
+              border: 1px solid rgba(201, 162, 75, .72);
+              border-radius: 50%;
+              color: #e6c77e;
+              background: linear-gradient(145deg, #1c1b19, #09090a);
+              box-shadow: 0 14px 28px -18px rgba(0, 0, 0, .85), 0 0 0 8px #f5f3ee;
+              transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+            }
+            #como-funciona-assessoria .briao-timeline-step:hover .briao-timeline-marker {
+              transform: translateY(-3px);
+              border-color: #e6c77e;
+              box-shadow: 0 18px 34px -18px rgba(0, 0, 0, .88), 0 0 0 8px #f5f3ee;
+            }
+            #como-funciona-assessoria .briao-timeline-number {
+              display: block;
+              margin-bottom: 10px;
+              color: #b88a32;
+              font-size: 11px;
+              font-weight: 800;
+              letter-spacing: .16em;
+              text-transform: uppercase;
+            }
+            #como-funciona-assessoria .briao-timeline-step h3 {
+              margin: 0 0 11px;
+              color: #17150f;
+              font-size: 17px;
+              font-weight: 800;
+              line-height: 1.35;
+            }
+            #como-funciona-assessoria .briao-timeline-step p {
+              max-width: 260px;
+              margin: 0 auto;
+              color: #5c584e;
+              font-size: 14px;
+              line-height: 1.65;
+            }
+            #como-funciona-assessoria .briao-timeline-cta {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              gap: 11px;
+              margin-top: 48px;
+              padding: 16px 27px;
+              border: 1px solid #b88a32;
+              border-radius: 8px;
+              color: #0b0b0d;
+              background: linear-gradient(135deg, #e6c77e, #c9a24b);
+              box-shadow: 0 14px 30px -22px rgba(184, 138, 50, .8);
+              font-size: 13px;
+              font-weight: 800;
+              letter-spacing: .08em;
+              text-transform: uppercase;
+              transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+            }
+            #como-funciona-assessoria .briao-timeline-cta:hover {
+              color: #0b0b0d;
+              filter: brightness(1.05);
+              transform: translateY(-2px);
+              box-shadow: 0 18px 32px -20px rgba(184, 138, 50, .8);
+            }
+            @media (max-width: 820px) {
+              #como-funciona-assessoria .briao-timeline {
+                grid-template-columns: 1fr;
+                gap: 0;
+                max-width: 650px;
+                margin: 0 auto;
+                text-align: left;
+              }
+              #como-funciona-assessoria .briao-timeline::before {
+                top: 38px;
+                bottom: 38px;
+                left: 38px;
+                right: auto;
+                width: 1px;
+                height: auto;
+                background: linear-gradient(180deg, rgba(184, 138, 50, .22), #c9a24b 18%, #c9a24b 82%, rgba(184, 138, 50, .22));
+              }
+              #como-funciona-assessoria .briao-timeline-step {
+                min-height: 150px;
+                display: grid;
+                grid-template-columns: 78px minmax(0, 1fr);
+                gap: 24px;
+                align-items: start;
+              }
+              #como-funciona-assessoria .briao-timeline-marker {
+                grid-column: 1;
+                margin: 0;
+              }
+              #como-funciona-assessoria .briao-timeline-copy {
+                grid-column: 2;
+                padding-top: 4px;
+              }
+              #como-funciona-assessoria .briao-timeline-step p { max-width: none; margin: 0; }
+            }
+            @media (max-width: 520px) {
+              #como-funciona-assessoria .briao-timeline-rule { margin-bottom: 42px; }
+              #como-funciona-assessoria .briao-timeline::before { left: 28px; }
+              #como-funciona-assessoria .briao-timeline-step {
+                min-height: 165px;
+                grid-template-columns: 58px minmax(0, 1fr);
+                gap: 18px;
+              }
+              #como-funciona-assessoria .briao-timeline-marker {
+                width: 58px;
+                height: 58px;
+                box-shadow: 0 12px 24px -18px rgba(0, 0, 0, .85), 0 0 0 6px #f5f3ee;
+              }
+              #como-funciona-assessoria .briao-timeline-marker svg { width: 22px; height: 22px; }
+              #como-funciona-assessoria .briao-timeline-step:hover .briao-timeline-marker {
+                box-shadow: 0 12px 24px -18px rgba(0, 0, 0, .85), 0 0 0 6px #f5f3ee;
+              }
+              #como-funciona-assessoria .briao-timeline-step h3 { font-size: 16px; }
+              #como-funciona-assessoria .briao-timeline-step p { font-size: 13.5px; }
+              #como-funciona-assessoria .briao-timeline-cta { width: 100%; margin-top: 14px; padding-inline: 18px; }
+            }
+            @media (prefers-reduced-motion: reduce) {
+              #como-funciona-assessoria .briao-timeline-marker,
+              #como-funciona-assessoria .briao-timeline-cta { transition: none; }
+            }
+          `;
+          doc.head.appendChild(timelineStyle);
+
+          const timelineSection = doc.createElement('section');
+          timelineSection.id = 'como-funciona-assessoria';
+          timelineSection.setAttribute('aria-labelledby', 'como-funciona-title');
+          timelineSection.innerHTML = `
+            <div class="briao-timeline-inner">
+              <div class="briao-timeline-heading">
+                <h2 id="como-funciona-title">Como funciona nossa <span>assessoria jurídica?</span></h2>
+                <p>Conheça as etapas do atendimento para solicitação de porte de arma de fogo perante a Polícia Federal.</p>
+                <span class="briao-timeline-rule" aria-hidden="true"></span>
+              </div>
+              <div class="briao-timeline">
+                <article class="briao-timeline-step">
+                  <span class="briao-timeline-marker" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path></svg></span>
+                  <div class="briao-timeline-copy"><span class="briao-timeline-number">Etapa 01</span><h3>Primeiro contato</h3><p>Converse com nossa equipe e apresente sua situação.</p></div>
+                </article>
+                <article class="briao-timeline-step">
+                  <span class="briao-timeline-marker" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"></circle><path d="m20 20-4.4-4.4"></path><path d="M11 8v6M8 11h6"></path></svg></span>
+                  <div class="briao-timeline-copy"><span class="briao-timeline-number">Etapa 02</span><h3>Análise jurídica</h3><p>Avaliamos individualmente as circunstâncias apresentadas e os requisitos legais aplicáveis.</p></div>
+                </article>
+                <article class="briao-timeline-step">
+                  <span class="briao-timeline-marker" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h4"></path></svg></span>
+                  <div class="briao-timeline-copy"><span class="briao-timeline-number">Etapa 03</span><h3>Preparação do pedido</h3><p>Orientamos a organização documental e a formalização do requerimento, quando cabível.</p></div>
+                </article>
+                <article class="briao-timeline-step">
+                  <span class="briao-timeline-marker" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 8.9-4-1.3-7-4.5-7-8.9V6l7-3Z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+                  <div class="briao-timeline-copy"><span class="briao-timeline-number">Etapa 04</span><h3>Acompanhamento</h3><p>Prestamos orientação jurídica durante a tramitação administrativa perante a Polícia Federal.</p></div>
+                </article>
+              </div>
+              <a class="briao-timeline-cta" href="{{ wa }}" target="_blank" rel="noopener">
+                Falar com a equipe jurídica
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.6 9.6 0 0 1-4.1-.9L3 21l1.8-4.7A8.5 8.5 0 1 1 21 11.5Z"></path><path d="M8.5 8.5c.5 3 2 4.5 5 5"></path></svg>
+              </a>
+            </div>
+          `;
+          profileSection.insertAdjacentElement('afterend', timelineSection);
+
+          if (!doc.getElementById('conteudo-juridico')) {
+            const mediaStyle = doc.createElement('style');
+            mediaStyle.textContent = `
+              #conteudo-juridico {
+                color: #f2efe8;
+                background:
+                  radial-gradient(circle at 12% 14%, rgba(201, 162, 75, .10), transparent 27%),
+                  radial-gradient(circle at 88% 76%, rgba(201, 162, 75, .07), transparent 26%),
+                  linear-gradient(145deg, #151516 0%, #09090b 72%);
+                border-top: 1px solid rgba(201, 162, 75, .14);
+                border-bottom: 1px solid rgba(201, 162, 75, .14);
+              }
+              #conteudo-juridico .briao-media-inner {
+                max-width: 1180px;
+                margin: 0 auto;
+                padding: clamp(78px, 9vw, 120px) clamp(18px, 4vw, 40px);
+              }
+              #conteudo-juridico .briao-media-heading {
+                max-width: 890px;
+                margin: 0 auto;
+                text-align: center;
+              }
+              #conteudo-juridico .briao-media-heading h2,
+              #conteudo-juridico .briao-info-heading h2 {
+                margin: 0;
+                color: #f2efe8;
+                font-size: clamp(29px, 3.35vw, 44px);
+                font-weight: 800;
+                letter-spacing: -.025em;
+                line-height: 1.15;
+              }
+              #conteudo-juridico .briao-media-heading h2 span,
+              #conteudo-juridico .briao-info-heading h2 span { color: #d2a744; }
+              #conteudo-juridico .briao-media-heading p {
+                max-width: 760px;
+                margin: 18px auto 0;
+                color: #aaa69c;
+                font-size: clamp(15px, 1.3vw, 17px);
+                line-height: 1.72;
+              }
+              #conteudo-juridico .briao-media-rule {
+                display: block;
+                width: 68px;
+                height: 2px;
+                margin: 28px auto 44px;
+                background: linear-gradient(90deg, #e6c77e, #a87828);
+              }
+              #conteudo-juridico .briao-video-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 24px;
+              }
+              #conteudo-juridico .briao-video-card {
+                overflow: hidden;
+                border: 1px solid rgba(201, 162, 75, .28);
+                border-radius: 17px;
+                background: linear-gradient(145deg, rgba(27, 27, 28, .96), rgba(10, 10, 12, .98));
+                box-shadow: 0 24px 48px -36px rgba(0, 0, 0, .95);
+              }
+              #conteudo-juridico .briao-video-placeholder {
+                position: relative;
+                aspect-ratio: 16 / 9;
+                display: grid;
+                place-items: center;
+                overflow: hidden;
+                background:
+                  linear-gradient(135deg, rgba(201, 162, 75, .06), transparent 52%),
+                  repeating-linear-gradient(120deg, rgba(255,255,255,.018) 0 1px, transparent 1px 20px),
+                  #111113;
+              }
+              #conteudo-juridico .briao-video-placeholder::after {
+                content: '';
+                position: absolute;
+                inset: 14px;
+                border: 1px solid rgba(201, 162, 75, .12);
+                border-radius: 11px;
+              }
+              #conteudo-juridico .briao-video-state {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 13px;
+                color: #8f8b80;
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: .12em;
+                text-transform: uppercase;
+              }
+              #conteudo-juridico .briao-video-state-icon {
+                width: 62px;
+                height: 62px;
+                display: grid;
+                place-items: center;
+                border: 1px solid rgba(201, 162, 75, .48);
+                border-radius: 50%;
+                color: #c9a24b;
+                background: rgba(201, 162, 75, .06);
+              }
+              #conteudo-juridico .briao-video-copy { padding: 22px 24px 24px; }
+              #conteudo-juridico .briao-video-copy span {
+                display: block;
+                margin-bottom: 8px;
+                color: #c9a24b;
+                font-size: 10px;
+                font-weight: 800;
+                letter-spacing: .15em;
+                text-transform: uppercase;
+              }
+              #conteudo-juridico .briao-video-copy h3 {
+                margin: 0;
+                color: #f2efe8;
+                font-size: 17px;
+                font-weight: 750;
+                line-height: 1.45;
+              }
+              #conteudo-juridico .briao-info-block {
+                margin-top: clamp(76px, 9vw, 116px);
+                padding-top: clamp(64px, 7vw, 88px);
+                border-top: 1px solid rgba(201, 162, 75, .16);
+              }
+              #conteudo-juridico .briao-info-heading {
+                max-width: 820px;
+                margin: 0 auto 38px;
+                text-align: center;
+              }
+              #conteudo-juridico .briao-carousel-shell {
+                position: relative;
+                max-width: 940px;
+                margin: 0 auto;
+              }
+              #conteudo-juridico .briao-carousel-viewport {
+                overflow: hidden;
+                border: 1px solid rgba(201, 162, 75, .31);
+                border-radius: 19px;
+                background: linear-gradient(135deg, #1b1a18, #0c0c0e);
+                box-shadow: 0 28px 58px -42px rgba(0,0,0,.98);
+              }
+              #conteudo-juridico .briao-carousel-track {
+                display: flex;
+                transition: transform .42s cubic-bezier(.22,.61,.36,1);
+                will-change: transform;
+              }
+              #conteudo-juridico .briao-info-slide {
+                flex: 0 0 100%;
+                min-width: 0;
+                min-height: 300px;
+                display: grid;
+                grid-template-columns: 110px minmax(0, 1fr);
+                align-items: center;
+                gap: 34px;
+                padding: clamp(38px, 5vw, 64px);
+              }
+              #conteudo-juridico .briao-info-icon {
+                width: 92px;
+                height: 92px;
+                display: grid;
+                place-items: center;
+                border: 1px solid rgba(201, 162, 75, .52);
+                border-radius: 22px;
+                color: #e6c77e;
+                background: rgba(201, 162, 75, .07);
+              }
+              #conteudo-juridico .briao-info-number {
+                display: block;
+                margin-bottom: 11px;
+                color: #c9a24b;
+                font-size: 10px;
+                font-weight: 800;
+                letter-spacing: .17em;
+                text-transform: uppercase;
+              }
+              #conteudo-juridico .briao-info-slide h3 {
+                margin: 0 0 14px;
+                color: #f2efe8;
+                font-family: 'Cormorant Garamond', Georgia, serif;
+                font-size: clamp(29px, 3.2vw, 40px);
+                font-weight: 600;
+                line-height: 1.1;
+              }
+              #conteudo-juridico .briao-info-slide p {
+                max-width: 680px;
+                margin: 0;
+                color: #bcb8ae;
+                font-size: 15px;
+                line-height: 1.75;
+              }
+              #conteudo-juridico .briao-carousel-controls {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 20px;
+                margin-top: 22px;
+              }
+              #conteudo-juridico .briao-carousel-arrows { display: flex; gap: 10px; }
+              #conteudo-juridico .briao-carousel-arrow {
+                width: 44px;
+                height: 44px;
+                display: grid;
+                place-items: center;
+                padding: 0;
+                border: 1px solid rgba(201, 162, 75, .42);
+                border-radius: 50%;
+                color: #e6c77e;
+                background: #111113;
+                cursor: pointer;
+                transition: border-color .2s ease, background .2s ease, transform .2s ease;
+              }
+              #conteudo-juridico .briao-carousel-arrow:hover,
+              #conteudo-juridico .briao-carousel-arrow:focus-visible {
+                border-color: #e6c77e;
+                background: #1c1b18;
+                outline: none;
+                transform: translateY(-1px);
+              }
+              #conteudo-juridico .briao-carousel-dots {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 9px;
+              }
+              #conteudo-juridico .briao-carousel-dot {
+                width: 8px;
+                height: 8px;
+                padding: 0;
+                border: 0;
+                border-radius: 50%;
+                background: #5e594e;
+                cursor: pointer;
+                transition: width .2s ease, border-radius .2s ease, background .2s ease;
+              }
+              #conteudo-juridico .briao-carousel-dot[aria-current="true"] {
+                width: 28px;
+                border-radius: 6px;
+                background: #c9a24b;
+              }
+              #conteudo-juridico .briao-media-cta-wrap { text-align: center; }
+              #conteudo-juridico .briao-media-cta {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 11px;
+                margin-top: 44px;
+                padding: 16px 27px;
+                border: 1px solid #b88a32;
+                border-radius: 8px;
+                color: #0b0b0d;
+                background: linear-gradient(135deg, #e6c77e, #c9a24b);
+                font-size: 13px;
+                font-weight: 800;
+                letter-spacing: .08em;
+                text-transform: uppercase;
+                transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+              }
+              #conteudo-juridico .briao-media-cta:hover {
+                color: #0b0b0d;
+                filter: brightness(1.05);
+                transform: translateY(-2px);
+                box-shadow: 0 18px 34px -22px rgba(201, 162, 75, .72);
+              }
+              @media (max-width: 720px) {
+                #conteudo-juridico .briao-video-grid { grid-template-columns: 1fr; }
+                #conteudo-juridico .briao-info-slide {
+                  min-height: 390px;
+                  grid-template-columns: 1fr;
+                  align-content: center;
+                  gap: 24px;
+                  padding: 32px 26px;
+                  text-align: center;
+                }
+                #conteudo-juridico .briao-info-icon { width: 76px; height: 76px; margin: 0 auto; border-radius: 18px; }
+                #conteudo-juridico .briao-carousel-controls { flex-direction: column-reverse; }
+                #conteudo-juridico .briao-carousel-arrows { width: 100%; justify-content: space-between; }
+                #conteudo-juridico .briao-media-cta { width: 100%; padding-inline: 18px; }
+              }
+              @media (prefers-reduced-motion: reduce) {
+                #conteudo-juridico .briao-carousel-track,
+                #conteudo-juridico .briao-carousel-arrow,
+                #conteudo-juridico .briao-carousel-dot,
+                #conteudo-juridico .briao-media-cta { transition: none; }
+              }
+            `;
+            doc.head.appendChild(mediaStyle);
+
+            const mediaSection = doc.createElement('section');
+            mediaSection.id = 'conteudo-juridico';
+            mediaSection.setAttribute('aria-labelledby', 'conteudo-juridico-title');
+            mediaSection.innerHTML = `
+              <div class="briao-media-inner">
+                <div class="briao-media-heading">
+                  <h2 id="conteudo-juridico-title">Entenda mais sobre a solicitação de <span>porte de arma de fogo</span></h2>
+                  <p>Informações jurídicas apresentadas pela Dra. Michelle sobre o procedimento de solicitação de porte de arma perante a Polícia Federal.</p>
+                  <span class="briao-media-rule" aria-hidden="true"></span>
+                </div>
+                <div class="briao-video-grid" aria-label="Conteúdos em vídeo em preparação">
+                  <article class="briao-video-card" data-video-src="">
+                    <div class="briao-video-placeholder">
+                      <div class="briao-video-state"><span class="briao-video-state-icon"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m10 9 5 3-5 3Z"></path></svg></span>Conteúdo em preparação</div>
+                    </div>
+                    <div class="briao-video-copy"><span>Vídeo 01</span><h3>Como funciona a assessoria jurídica?</h3></div>
+                  </article>
+                  <article class="briao-video-card" data-video-src="">
+                    <div class="briao-video-placeholder">
+                      <div class="briao-video-state"><span class="briao-video-state-icon"><svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m10 9 5 3-5 3Z"></path></svg></span>Conteúdo em preparação</div>
+                    </div>
+                    <div class="briao-video-copy"><span>Vídeo 02</span><h3>Quais são os requisitos para solicitar o porte de arma?</h3></div>
+                  </article>
+                </div>
+                <div class="briao-info-block">
+                  <div class="briao-info-heading"><h2>Informações importantes sobre o <span>porte de arma de fogo</span></h2></div>
+                  <div class="briao-carousel-shell" role="region" aria-roledescription="carrossel" aria-label="Informações jurídicas sobre porte de arma" tabindex="0" data-carousel-index="0">
+                    <div class="briao-carousel-viewport">
+                      <div class="briao-carousel-track">
+                        <article class="briao-info-slide" aria-hidden="false"><span class="briao-info-icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 4h10M5 8h14M8 12h8M10 16h4M12 4v16"></path></svg></span><div><span class="briao-info-number">Informação 01</span><h3>Posse e porte são diferentes</h3><p>A posse autoriza a manutenção da arma nos locais legalmente permitidos, enquanto o porte se refere à possibilidade de conduzi-la fora desses locais, observadas as autorizações e condições previstas em lei.</p></div></article>
+                        <article class="briao-info-slide" aria-hidden="true"><span class="briao-info-icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 8.9-4-1.3-7-4.5-7-8.9V6l7-3Z"></path><path d="m9 12 2 2 4-4"></path></svg></span><div><span class="briao-info-number">Informação 02</span><h3>Requisitos legais</h3><p>A solicitação depende do cumprimento dos requisitos legais aplicáveis, incluindo a demonstração de efetiva necessidade nas hipóteses previstas pela legislação.</p></div></article>
+                        <article class="briao-info-slide" aria-hidden="true"><span class="briao-info-icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5M9 13h6M9 17h4"></path></svg></span><div><span class="briao-info-number">Informação 03</span><h3>Documentação</h3><p>O procedimento exige documentação específica e comprovação das circunstâncias declaradas, de acordo com os requisitos aplicáveis a cada situação.</p></div></article>
+                        <article class="briao-info-slide" aria-hidden="true"><span class="briao-info-icon" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20h16M6 17V9m4 8V9m4 8V9m4 8V9M3 7l9-4 9 4Z"></path></svg></span><div><span class="briao-info-number">Informação 04</span><h3>Análise pela Polícia Federal</h3><p>A decisão sobre a autorização compete à Polícia Federal, conforme a legislação aplicável e a análise das informações e documentos apresentados.</p></div></article>
+                      </div>
+                    </div>
+                    <div class="briao-carousel-controls">
+                      <div class="briao-carousel-arrows"><button class="briao-carousel-arrow" type="button" data-carousel-action="prev" aria-label="Informação anterior"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"></path></svg></button><button class="briao-carousel-arrow" type="button" data-carousel-action="next" aria-label="Próxima informação"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"></path></svg></button></div>
+                      <div class="briao-carousel-dots" role="group" aria-label="Selecionar informação"><button class="briao-carousel-dot" type="button" data-carousel-go="0" aria-label="Ir para informação 1" aria-current="true"></button><button class="briao-carousel-dot" type="button" data-carousel-go="1" aria-label="Ir para informação 2" aria-current="false"></button><button class="briao-carousel-dot" type="button" data-carousel-go="2" aria-label="Ir para informação 3" aria-current="false"></button><button class="briao-carousel-dot" type="button" data-carousel-go="3" aria-label="Ir para informação 4" aria-current="false"></button></div>
+                    </div>
+                    <span class="briao-carousel-status" aria-live="polite" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">Informação 1 de 4</span>
+                  </div>
+                </div>
+                <div class="briao-media-cta-wrap"><a class="briao-media-cta" href="{{ wa }}" target="_blank" rel="noopener">Falar com a equipe jurídica<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.6 9.6 0 0 1-4.1-.9L3 21l1.8-4.7A8.5 8.5 0 1 1 21 11.5Z"></path><path d="M8.5 8.5c.5 3 2 4.5 5 5"></path></svg></a></div>
+              </div>
+            `;
+            timelineSection.insertAdjacentElement('afterend', mediaSection);
+
+            const mediaScript = doc.createElement('script');
+            mediaScript.textContent = `
+              (function () {
+                function updateCarousel(shell, nextIndex) {
+                  var slides = Array.from(shell.querySelectorAll('.briao-info-slide'));
+                  var dots = Array.from(shell.querySelectorAll('.briao-carousel-dot'));
+                  var count = slides.length;
+                  if (!count) return;
+                  var index = (nextIndex + count) % count;
+                  shell.dataset.carouselIndex = String(index);
+                  var track = shell.querySelector('.briao-carousel-track');
+                  if (track) track.style.transform = 'translateX(-' + (index * 100) + '%)';
+                  slides.forEach(function (slide, i) { slide.setAttribute('aria-hidden', i === index ? 'false' : 'true'); });
+                  dots.forEach(function (dot, i) { dot.setAttribute('aria-current', i === index ? 'true' : 'false'); });
+                  var status = shell.querySelector('.briao-carousel-status');
+                  if (status) status.textContent = 'Informação ' + (index + 1) + ' de ' + count;
+                }
+                document.addEventListener('click', function (event) {
+                  var action = event.target.closest('[data-carousel-action]');
+                  var dot = event.target.closest('[data-carousel-go]');
+                  var control = action || dot;
+                  if (!control) return;
+                  var shell = control.closest('.briao-carousel-shell');
+                  if (!shell) return;
+                  var current = Number(shell.dataset.carouselIndex || 0);
+                  updateCarousel(shell, dot ? Number(dot.dataset.carouselGo) : current + (action.dataset.carouselAction === 'next' ? 1 : -1));
+                });
+                document.addEventListener('keydown', function (event) {
+                  var shell = event.target.closest && event.target.closest('.briao-carousel-shell');
+                  if (!shell || (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) return;
+                  event.preventDefault();
+                  var current = Number(shell.dataset.carouselIndex || 0);
+                  updateCarousel(shell, current + (event.key === 'ArrowRight' ? 1 : -1));
+                });
+              })();
+            `;
+            doc.body.appendChild(mediaScript);
+          }
+        }
       }
+    }
+
+    // Refine the existing final FAQ and contact areas without duplicating
+    // sections or changing analytics/integration behavior.
+    const existingFaq = doc.getElementById('faq');
+    if (existingFaq && !doc.getElementById('briao-faq-title')) {
+      const conversionStyle = doc.createElement('style');
+      conversionStyle.textContent = `
+        #faq {
+          max-width: 1040px !important;
+          margin: clamp(72px, 9vw, 116px) auto 0 !important;
+          padding: clamp(44px, 6vw, 74px) clamp(18px, 4vw, 58px);
+          color: #f2efe8;
+          text-align: center;
+          border: 1px solid rgba(201, 162, 75, .24);
+          border-radius: 24px;
+          background:
+            radial-gradient(circle at 12% 0%, rgba(201, 162, 75, .12), transparent 34%),
+            linear-gradient(145deg, #151517, #09090b 72%);
+          box-shadow: 0 34px 72px -54px rgba(0, 0, 0, .9);
+        }
+        #faq .briao-faq-heading { max-width: 790px; margin: 0 auto; }
+        #faq .briao-faq-heading h2 {
+          margin: 0;
+          color: #f4f1ea;
+          font-size: clamp(30px, 3.7vw, 48px);
+          font-weight: 800;
+          letter-spacing: -.025em;
+          line-height: 1.14;
+          text-transform: none;
+        }
+        #faq .briao-faq-heading h2 span { color: #d8ae50; }
+        #faq .briao-faq-heading p {
+          max-width: 680px;
+          margin: 18px auto 0;
+          color: #aaa69c;
+          font-size: clamp(15px, 1.35vw, 17px);
+          line-height: 1.7;
+        }
+        #faq .briao-faq-rule {
+          display: block;
+          width: 68px;
+          height: 2px;
+          margin: 28px auto 42px;
+          background: linear-gradient(90deg, #e6c77e, #a87828);
+        }
+        #faq .briao-faq-list { display: grid; gap: 12px; text-align: left; }
+        #faq .briao-faq-item {
+          overflow: hidden;
+          border: 1px solid rgba(201, 162, 75, .20);
+          border-radius: 13px;
+          background: rgba(255, 255, 255, .025);
+          transition: border-color .2s ease, background .2s ease;
+        }
+        #faq .briao-faq-item[open] {
+          border-color: rgba(230, 199, 126, .48);
+          background: rgba(201, 162, 75, .055);
+        }
+        #faq .briao-faq-item summary {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 22px;
+          min-height: 72px;
+          padding: 18px 22px;
+          color: #f0ede6;
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 1.45;
+          list-style: none;
+        }
+        #faq .briao-faq-item summary::-webkit-details-marker { display: none; }
+        #faq .briao-faq-icon {
+          position: relative;
+          flex: 0 0 auto;
+          width: 30px;
+          height: 30px;
+          border: 1px solid rgba(201, 162, 75, .48);
+          border-radius: 50%;
+        }
+        #faq .briao-faq-icon::before,
+        #faq .briao-faq-icon::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 11px;
+          height: 1px;
+          background: #d8ae50;
+          transform: translate(-50%, -50%);
+          transition: transform .2s ease;
+        }
+        #faq .briao-faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+        #faq .briao-faq-item[open] .briao-faq-icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+        #faq .briao-faq-answer { padding: 0 68px 22px 22px; }
+        #faq .briao-faq-answer p {
+          max-width: 780px;
+          margin: 0;
+          color: #b8b3a8;
+          font-size: 14.5px;
+          line-height: 1.75;
+        }
+        .briao-final-contact {
+          position: relative;
+          overflow: hidden;
+          padding: clamp(64px, 8vw, 106px) clamp(18px, 4vw, 40px);
+          color: #f2efe8;
+          background:
+            radial-gradient(circle at 82% 0%, rgba(201, 162, 75, .15), transparent 35%),
+            #08080a !important;
+          border-top: 1px solid rgba(201, 162, 75, .17);
+          border-bottom: 1px solid rgba(201, 162, 75, .17);
+        }
+        .briao-final-contact::before {
+          content: '';
+          position: absolute;
+          inset: 20px;
+          border: 1px solid rgba(201, 162, 75, .08);
+          pointer-events: none;
+        }
+        .briao-final-contact .briao-final-inner {
+          position: relative;
+          z-index: 1;
+          max-width: 990px;
+          margin: 0 auto;
+          text-align: center;
+        }
+        .briao-final-contact .briao-final-kicker {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 20px;
+          color: #c9a24b;
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: .18em;
+          text-transform: uppercase;
+        }
+        .briao-final-contact .briao-final-kicker::before,
+        .briao-final-contact .briao-final-kicker::after {
+          content: '';
+          width: 30px;
+          height: 1px;
+          background: rgba(201, 162, 75, .65);
+        }
+        .briao-final-contact h2 {
+          max-width: 900px;
+          margin: 0 auto;
+          color: #f4f1ea;
+          font-size: clamp(32px, 4.4vw, 56px);
+          font-weight: 800;
+          letter-spacing: -.03em;
+          line-height: 1.12;
+        }
+        .briao-final-contact h2 span { color: #d8ae50; }
+        .briao-final-contact p {
+          max-width: 760px;
+          margin: 22px auto 0;
+          color: #aaa69c;
+          font-size: clamp(15px, 1.35vw, 17px);
+          line-height: 1.75;
+        }
+        .briao-whatsapp-cta {
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          gap: 11px !important;
+          border: 1px solid #b88a32 !important;
+          border-radius: 8px !important;
+          color: #0b0b0d !important;
+          background: linear-gradient(135deg, #e6c77e, #c9a24b) !important;
+          font-weight: 800 !important;
+          letter-spacing: .075em !important;
+          text-transform: uppercase !important;
+        }
+        .briao-final-contact .briao-whatsapp-cta {
+          margin-top: 34px;
+          padding: 17px 28px !important;
+          font-size: 13px !important;
+          box-shadow: 0 18px 38px -20px rgba(201, 162, 75, .8);
+          transition: transform .2s ease, filter .2s ease;
+        }
+        .briao-final-contact .briao-whatsapp-cta:hover { transform: translateY(-2px); filter: brightness(1.05); }
+        @media (max-width: 600px) {
+          #faq { padding: 40px 16px; border-radius: 18px; }
+          #faq .briao-faq-rule { margin-bottom: 32px; }
+          #faq .briao-faq-item summary { min-height: 66px; padding: 16px; font-size: 15px; }
+          #faq .briao-faq-answer { padding: 0 16px 18px; }
+          .briao-final-contact::before { inset: 10px; }
+          .briao-final-contact .briao-whatsapp-cta { width: 100%; padding-inline: 16px !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          #faq .briao-faq-item,
+          #faq .briao-faq-icon::after,
+          .briao-final-contact .briao-whatsapp-cta { transition: none; }
+        }
+      `;
+      doc.head.appendChild(conversionStyle);
+
+      const faqSection = doc.createElement('section');
+      faqSection.id = 'faq';
+      faqSection.setAttribute('aria-labelledby', 'briao-faq-title');
+      faqSection.innerHTML = `
+        <div class="briao-faq-heading">
+          <h2 id="briao-faq-title">Perguntas Frequentes sobre <span>Porte de Arma de Fogo</span></h2>
+          <p>Esclareça as principais dúvidas sobre a solicitação de porte de arma e a assessoria jurídica.</p>
+          <span class="briao-faq-rule" aria-hidden="true"></span>
+        </div>
+        <div class="briao-faq-list">
+          <details class="briao-faq-item" name="briao-faq" open>
+            <summary>Quem pode solicitar o porte de arma de fogo?<span class="briao-faq-icon" aria-hidden="true"></span></summary>
+            <div class="briao-faq-answer"><p>A solicitação depende do cumprimento dos requisitos previstos na legislação, incluindo a demonstração de efetiva necessidade, conforme as circunstâncias do requerente.</p></div>
+          </details>
+          <details class="briao-faq-item" name="briao-faq">
+            <summary>Qual é a diferença entre posse e porte de arma?<span class="briao-faq-icon" aria-hidden="true"></span></summary>
+            <div class="briao-faq-answer"><p>A posse autoriza a manutenção da arma nos locais permitidos pela legislação. O porte é uma autorização específica para trazer consigo uma arma de fogo fora desses locais, observadas as condições legais.</p></div>
+          </details>
+          <details class="briao-faq-item" name="briao-faq">
+            <summary>Quais documentos são necessários?<span class="briao-faq-icon" aria-hidden="true"></span></summary>
+            <div class="briao-faq-answer"><p>A documentação depende da situação do solicitante e das exigências legais aplicáveis. Nossa equipe oferece orientação sobre a organização dos documentos necessários.</p></div>
+          </details>
+          <details class="briao-faq-item" name="briao-faq">
+            <summary>A assessoria garante a aprovação do porte?<span class="briao-faq-icon" aria-hidden="true"></span></summary>
+            <div class="briao-faq-answer"><p>Não. A decisão sobre a concessão do porte de arma é de competência da Polícia Federal. A Brião Advocacia presta assessoria jurídica individualizada durante o procedimento.</p></div>
+          </details>
+          <details class="briao-faq-item" name="briao-faq">
+            <summary>O atendimento pode ser realizado à distância?<span class="briao-faq-icon" aria-hidden="true"></span></summary>
+            <div class="briao-faq-answer"><p>Sim. A Brião Advocacia oferece atendimento jurídico digital, observadas eventuais exigências presenciais dos órgãos competentes.</p></div>
+          </details>
+          <details class="briao-faq-item" name="briao-faq">
+            <summary>Como funciona o acompanhamento do pedido?<span class="briao-faq-icon" aria-hidden="true"></span></summary>
+            <div class="briao-faq-answer"><p>A equipe jurídica presta orientação e acompanha a tramitação administrativa do requerimento perante a Polícia Federal.</p></div>
+          </details>
+        </div>
+      `;
+      existingFaq.replaceWith(faqSection);
+
+      const finalAside = doc.getElementById('finalCtaAside');
+      const finalSection = finalAside && finalAside.closest('section');
+      if (finalSection) {
+        finalSection.className = 'briao-final-contact';
+        finalSection.removeAttribute('style');
+        finalSection.setAttribute('aria-labelledby', 'briao-final-title');
+        finalSection.innerHTML = `
+          <div class="briao-final-inner">
+            <span class="briao-final-kicker">Atendimento jurídico</span>
+            <h2 id="briao-final-title">Precisa de orientação jurídica para solicitar o <span>porte de arma de fogo?</span></h2>
+            <p>Entre em contato com a equipe da Brião Advocacia para conhecer nossa assessoria jurídica e obter informações sobre a análise individualizada do seu caso.</p>
+            <a class="briao-whatsapp-cta" href="{{ wa }}" target="_blank" rel="noopener">
+              Falar com a equipe jurídica
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.5 9.6 9.6 0 0 1-4.1-.9L3 21l1.8-4.7A8.5 8.5 0 1 1 21 11.5Z"></path><path d="M8.5 8.5c.5 3 2 4.5 5 5"></path></svg>
+            </a>
+          </div>
+        `;
+      }
+
+      doc.querySelectorAll('a[href*="wa.me"]').forEach((link) => {
+        const label = link.textContent.replace(/\s+/g, ' ').trim();
+        if (/^Falar com (um )?(especialista|a equipe jurídica)$/i.test(label)) {
+          const textNode = Array.from(link.childNodes).find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+          if (textNode) textNode.nodeValue = '\n          Falar com a equipe jurídica\n          ';
+          link.classList.add('briao-whatsapp-cta');
+          link.setAttribute('aria-label', 'Falar com a equipe jurídica pelo WhatsApp');
+        }
+      });
+
+      // The original component renders some CTA labels after its startup
+      // script. Normalize those labels once that synchronous render finishes,
+      // without emitting or changing any analytics event.
+      const ctaScript = doc.createElement('script');
+      ctaScript.textContent = `
+        function normalizeBriaoWhatsappCtas() {
+          document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
+            var label = link.textContent.replace(/\\s+/g, ' ').trim();
+            if (!/^Falar com (um )?(especialista|a equipe jurídica)$/i.test(label)) return;
+            var textNode = Array.from(link.childNodes).find(function (node) {
+              return node.nodeType === Node.TEXT_NODE && node.textContent.trim();
+            });
+            if (textNode) textNode.nodeValue = '\\n          Falar com a equipe jurídica\\n          ';
+            link.classList.add('briao-whatsapp-cta');
+            link.setAttribute('aria-label', 'Falar com a equipe jurídica pelo WhatsApp');
+          });
+        }
+        window.setTimeout(normalizeBriaoWhatsappCtas, 0);
+        window.setTimeout(normalizeBriaoWhatsappCtas, 2000);
+      `;
+      doc.body.appendChild(ctaScript);
     }
 
     const textWalker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
