@@ -1750,6 +1750,20 @@ document.addEventListener('DOMContentLoaded', async function() {
       doc.body.appendChild(ctaScript);
     }
 
+    const siteFooter = doc.querySelector('footer');
+    if (siteFooter && !doc.getElementById('agency-background-credit')) {
+      const footerBottom = siteFooter.lastElementChild;
+      const credit = doc.createElement('span');
+      credit.id = 'agency-background-credit';
+      credit.style.cssText = 'flex:1 0 100%;margin-top:8px;text-align:center';
+      credit.innerHTML = `Desenvolvido com <span aria-label="amor" role="img" style="color:#c9a24b">♥</span> por <a href="https://agencybackground.com.br/" target="_blank" rel="noopener noreferrer" style="color:#c9a24b;font-weight:700;text-decoration:none">Agência Background</a>`;
+      if (footerBottom) {
+        footerBottom.appendChild(credit);
+      } else {
+        siteFooter.appendChild(credit);
+      }
+    }
+
     const textWalker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
     let textNode;
     while ((textNode = textWalker.nextNode())) {
